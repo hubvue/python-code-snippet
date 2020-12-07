@@ -35,10 +35,29 @@ myInvertedDict3 = {
 }
 print(myInvertedDict3)
 
-# 4、用于反转具有非唯一值的字典，值相同的key会被放在list里
+# 4、用于反转具有非唯一值的字典
+# 方法思路: 使用defaultdict方法创建dict，设置dict的value的默认值为list，
+# 使用推导式将值相同的key会被放在list里
 from collections import defaultdict
 myInvertedDict4 = defaultdict(list)
 {
   myInvertedDict4[value].append(key) for key, value in myDict.items()
 }
-print(dict(myInvertedDict4))
+print(myInvertedDict4)
+
+# 5、用于反转具有非唯一值的字典
+# 方法思路：与4思路相同，只不过没有用到库，使用dict的setdefault方法
+myInvertedDict5 = dict()
+for key, value in myDict.items():
+    myInvertedDict5.setdefault(value, list()).append(key)
+
+print(myInvertedDict5)
+
+
+# 6、用于反转value是列表的字典
+# 方法思路：推导式一把梭，先推出key，然后通过key获取到values数组
+# 然后遍历values得到每一个value，将每一个value做key，key做value
+myInvertedDict6 = {
+  value: key for key in myDict for value in myDict[key]
+}
+print(myInvertedDict6)
