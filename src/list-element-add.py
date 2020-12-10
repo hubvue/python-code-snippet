@@ -41,3 +41,13 @@ allDevices5 = list(map(operator.add, ethernetDevices, usbDevices))
 
 
 
+# change---实现merge方法，多个list相加
+
+def merge(row1, row2, *rows):
+  master = [x + y for x, y in zip(row1, row2)]
+  for row in rows:
+    master = [x + y for x, y in zip(master, row)]
+  
+  return master
+
+print(merge(ethernetDevices,ethernetDevices,ethernetDevices,ethernetDevices,ethernetDevices))
